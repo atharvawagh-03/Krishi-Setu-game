@@ -142,14 +142,6 @@ export default function LandingPage() {
           >
             🚀 Start Farming
           </motion.button>
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary text-lg px-8 py-4"
-          >
-            ⭐ View on GitHub
-          </a>
         </motion.div>
 
         {/* Floating crop emojis */}
