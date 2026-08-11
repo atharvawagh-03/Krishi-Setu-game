@@ -11,6 +11,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
 import joblib
 import os
+import sys
+
+# Ensure UTF-8 output encoding on Windows terminals
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 
 # Create model directory
 os.makedirs('model', exist_ok=True)

@@ -9,6 +9,11 @@ from flask_cors import CORS
 import joblib
 import numpy as np
 import os
+import sys
+
+# Ensure UTF-8 output encoding on Windows terminals
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
 
 app = Flask(__name__)
 CORS(app)

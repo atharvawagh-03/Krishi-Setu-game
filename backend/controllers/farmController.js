@@ -3,7 +3,7 @@ const FarmPlot = require('../models/FarmPlot');
 const HarvestLog = require('../models/HarvestLog');
 const axios = require('axios');
 
-const CROPS = FarmPlot.statics.CROPS;
+const CROPS = FarmPlot.CROPS;
 const USER_ID = process.env.DEFAULT_USER_ID || 'default_player';
 
 // ─── Helper: get or create default user ───────────────────────────────────────
