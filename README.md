@@ -1,8 +1,8 @@
-# 🌾 SmartFarm Tycoon
+# 🌾 KrishiSetu-FarmX
 
 > An AI-powered browser-based farming simulation game built with React, Node.js, MongoDB, and Python Flask.
 
-![SmartFarm Tycoon](https://img.shields.io/badge/Stack-React%20%7C%20Node.js%20%7C%20MongoDB%20%7C%20Python-brightgreen)
+![KrishiSetu-FarmX](https://img.shields.io/badge/Stack-React%20%7C%20Node.js%20%7C%20MongoDB%20%7C%20Python-brightgreen)
 ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ## 🎮 Features
@@ -117,8 +117,8 @@ Frontend runs on `http://localhost:5173`
 
 ## 📁 Resume Description
 
-> Built **SmartFarm Tycoon**, an AI-powered farming simulation game using React, Tailwind CSS, Framer Motion, Node.js, Express, MongoDB, and Python Flask. Implemented persistent crop timers, weather simulation, analytics dashboards, and machine-learning-based crop recommendations.
+> Built **KrishiSetu-FarmX**, an AI-powered farming simulation game using React, Tailwind CSS, Framer Motion, Node.js, Express, MongoDB, and Python Flask. Implemented persistent crop timers, weather simulation, analytics dashboards, and machine-learning-based crop recommendations.
 
 ## 📄 License
 
-MIT © 2025 SmartFarm Tycoon
+MIT © 2025 KrishiSetu-FarmX

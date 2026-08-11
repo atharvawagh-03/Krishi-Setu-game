@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "https://smartfarm-tycoon-api.onrender.com/api/$1"
+      "dest": "https://krishi-setu-farmx-api.onrender.com/api/$1"
     },
     {
       "src": "/(.*)",

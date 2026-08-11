@@ -91,7 +91,7 @@ export default function GamePage() {
 
       {/* ── Footer ────────────────────────────────────────── */}
       <footer className="text-center py-3 text-slate-600 text-xs border-t border-white/5">
-        SmartFarm Tycoon · AI-Powered Farming ·{' '}
+        KrishiSetu-FarmX · AI-Powered Farming ·{' '}
         <a href="/" className="text-green-600 hover:text-green-400 transition-colors">← Back to Home</a>
       </footer>
     </motion.div>

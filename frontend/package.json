@@ -1,7 +1,7 @@
 {
-  "name": "smartfarm-tycoon-frontend",
+  "name": "krishi-setu-farmx-frontend",
   "version": "1.0.0",
-  "description": "SmartFarm Tycoon – React Frontend",
+  "description": "KrishiSetu-FarmX – React Frontend",
   "private": true,
   "type": "module",
   "scripts": {

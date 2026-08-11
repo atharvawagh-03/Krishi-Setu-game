@@ -1,7 +1,7 @@
-# SmartFarm Tycoon – Architecture Overview
+# KrishiSetu-FarmX – Architecture Overview
 
 ## Overview
-SmartFarm Tycoon follows a 3-tier microservice-inspired architecture:
+KrishiSetu-FarmX follows a 3-tier microservice-inspired architecture:
 
 ```
 [ Frontend (React + Vite) ] <---> [ Backend API (Node.js + Express) ] <---> [ AI Service (Python Flask) ]

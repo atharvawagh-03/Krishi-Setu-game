@@ -1,4 +1,4 @@
-# SmartFarm Tycoon – API Documentation
+# KrishiSetu-FarmX – API Documentation
 
 ## Base URL
 `http://localhost:5000/api`

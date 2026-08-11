@@ -35,7 +35,7 @@ export default function NavBar() {
           aria-label="Go to homepage"
         >
           <span className="text-2xl animate-float">🌾</span>
-          <span className="font-display font-bold text-lg text-gradient hidden sm:block">SmartFarm Tycoon</span>
+          <span className="font-display font-bold text-lg text-gradient hidden sm:block">KrishiSetu-FarmX</span>
         </button>
 
         {/* Stats row */}

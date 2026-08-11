@@ -1,7 +1,7 @@
 services:
   # ─── Backend API ────────────────────────────────────────────────────────────
   - type: web
-    name: smartfarm-tycoon-api
+    name: krishi-setu-farmx-api
     runtime: node
     rootDir: backend
     buildCommand: npm install
@@ -12,14 +12,14 @@ services:
       - key: MONGODB_URI
         sync: false
       - key: AI_SERVICE_URL
-        value: https://smartfarm-tycoon-ai.onrender.com
+        value: https://krishi-setu-farmx-ai.onrender.com
       - key: FRONTEND_URL
-        value: https://smartfarm-tycoon.vercel.app
+        value: https://krishi-setu-farmx.vercel.app
     healthCheckPath: /health
 
   # ─── AI Service ─────────────────────────────────────────────────────────────
   - type: web
-    name: smartfarm-tycoon-ai
+    name: krishi-setu-farmx-ai
     runtime: python
     rootDir: ai-service
     buildCommand: pip install -r requirements.txt && python train.py

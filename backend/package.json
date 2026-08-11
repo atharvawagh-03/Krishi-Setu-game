@@ -1,7 +1,7 @@
 {
-  "name": "smartfarm-tycoon-backend",
+  "name": "krishi-setu-farmx-backend",
   "version": "1.0.0",
-  "description": "SmartFarm Tycoon – Node.js Express Backend API",
+  "description": "KrishiSetu-FarmX – Node.js Express Backend API",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

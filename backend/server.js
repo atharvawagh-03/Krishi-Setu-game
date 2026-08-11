@@ -21,7 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // ─── Health Check ─────────────────────────────────────────────────────────────
 app.get('/health', (req, res) => {
-  res.json({ status: 'ok', service: 'SmartFarm Tycoon API', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', service: 'KrishiSetu-FarmX API', timestamp: new Date().toISOString() });
 });
 
 // ─── API Routes ───────────────────────────────────────────────────────────────
@@ -33,7 +33,7 @@ app.use(errorHandler);
 
 // ─── Start Server ─────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`🚀 SmartFarm Tycoon API running on http://localhost:${PORT}`);
+  console.log(`🚀 KrishiSetu-FarmX API running on http://localhost:${PORT}`);
   console.log(`📡 Environment: ${process.env.NODE_ENV || 'development'}`);
 });
 

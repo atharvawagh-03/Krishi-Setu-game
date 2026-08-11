@@ -1,4 +1,4 @@
-# Contributing to SmartFarm Tycoon
+# Contributing to KrishiSetu-FarmX
 
 Thank you for your interest in contributing! 🌾
 

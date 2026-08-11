@@ -76,7 +76,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-3xl animate-float">🌾</span>
-            <span className="font-display font-bold text-xl text-gradient">SmartFarm Tycoon</span>
+            <span className="font-display font-bold text-xl text-gradient">KrishiSetu-FarmX</span>
           </div>
           <motion.button
             id="nav-play-btn"
@@ -110,9 +110,9 @@ export default function LandingPage() {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="font-display font-bold text-6xl md:text-7xl lg:text-8xl mb-6 leading-tight"
         >
-          <span className="text-gradient">SmartFarm</span>
+          <span className="text-gradient">KrishiSetu-</span>
           <br />
-          <span className="text-white">Tycoon</span>
+          <span className="text-white">FarmX</span>
         </motion.h1>
 
         <motion.p
@@ -138,7 +138,7 @@ export default function LandingPage() {
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/game')}
             className="btn-primary text-lg px-10 py-4"
-            aria-label="Start playing SmartFarm Tycoon"
+            aria-label="Start playing KrishiSetu-FarmX"
           >
             🚀 Start Farming
           </motion.button>
@@ -283,7 +283,7 @@ export default function LandingPage() {
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate('/game')}
             className="btn-primary text-xl px-12 py-5"
-            aria-label="Play SmartFarm Tycoon"
+            aria-label="Play KrishiSetu-FarmX"
           >
             🌾 Play Now – It's Free!
           </motion.button>
@@ -292,7 +292,7 @@ export default function LandingPage() {
 
       {/* ── Footer ────────────────────────────────────────── */}
       <footer className="border-t border-white/10 py-8 text-center text-slate-500 text-sm">
-        <p>© 2025 SmartFarm Tycoon · Built with ❤️ as a portfolio project</p>
+        <p>© 2025 KrishiSetu-FarmX · Built with ❤️ as a portfolio project</p>
       </footer>
     </div>
   );
