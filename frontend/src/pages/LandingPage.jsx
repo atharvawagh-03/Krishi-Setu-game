@@ -5,7 +5,7 @@ const features = [
   {
     icon: '🌾',
     title: 'Plant & Harvest',
-    desc: 'Grow 4 unique crops on your 3×3 farm grid. Watch them flourish in real-time with beautiful animations.',
+    desc: 'Grow 5 unique crops on your 3×3 farm grid. Watch them flourish in real-time with beautiful animations.',
     color: 'from-green-500/20 to-emerald-500/10',
     border: 'border-green-500/30',
   },
@@ -48,6 +48,7 @@ const crops = [
   { emoji: '🍅', name: 'Tomato',     delay: 0.3 },
   { emoji: '🌽', name: 'Corn',       delay: 0.6 },
   { emoji: '🍓', name: 'Strawberry', delay: 0.9 },
+  { emoji: '🌻', name: 'Sunflower',  delay: 1.2 },
 ];
 
 const containerVariants = {

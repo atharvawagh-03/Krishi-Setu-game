@@ -38,6 +38,15 @@ const CROP_DEFINITIONS = {
     waterCost: 5,
     xpReward: 60,
   },
+  sunflower: {
+    name: 'Sunflower',
+    emoji: '🌻',
+    cost: 100,
+    reward: 220,
+    growthTime: 150,
+    waterCost: 5,
+    xpReward: 45,
+  },
 };
 
 const farmPlotSchema = new mongoose.Schema(
@@ -60,7 +69,7 @@ const farmPlotSchema = new mongoose.Schema(
     },
     cropType: {
       type: String,
-      enum: ['wheat', 'tomato', 'corn', 'strawberry', null],
+      enum: ['wheat', 'tomato', 'corn', 'strawberry', 'sunflower', null],
       default: null,
     },
     plantedAt: {

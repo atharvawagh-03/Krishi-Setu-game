@@ -6,6 +6,7 @@ const CROP_LIST = [
   { key: 'tomato',     emoji: '🍅', name: 'Tomato',     color: 'from-red-500/20 to-rose-500/10',      border: 'border-red-500/30',     badge: 'bg-red-500/20 text-red-300',      tag: 'Popular' },
   { key: 'corn',       emoji: '🌽', name: 'Corn',       color: 'from-yellow-500/20 to-orange-500/10', border: 'border-yellow-500/30',  badge: 'bg-yellow-500/20 text-yellow-300', tag: 'Balanced' },
   { key: 'strawberry', emoji: '🍓', name: 'Strawberry', color: 'from-pink-500/20 to-fuchsia-500/10',  border: 'border-pink-500/30',    badge: 'bg-pink-500/20 text-pink-300',     tag: 'Premium' },
+  { key: 'sunflower',  emoji: '🌻', name: 'Sunflower',  color: 'from-amber-200/20 to-yellow-400/10', border: 'border-amber-400/30', badge: 'bg-amber-500/20 text-amber-300', tag: 'Sunshine' },
 ];
 
 function formatTime(seconds) {
