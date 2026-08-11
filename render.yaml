@@ -1,0 +1,29 @@
+services:
+  # ─── Backend API ────────────────────────────────────────────────────────────
+  - type: web
+    name: smartfarm-tycoon-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        sync: false
+      - key: AI_SERVICE_URL
+        value: https://smartfarm-tycoon-ai.onrender.com
+      - key: FRONTEND_URL
+        value: https://smartfarm-tycoon.vercel.app
+    healthCheckPath: /health
+
+  # ─── AI Service ─────────────────────────────────────────────────────────────
+  - type: web
+    name: smartfarm-tycoon-ai
+    runtime: python
+    rootDir: ai-service
+    buildCommand: pip install -r requirements.txt && python train.py
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
