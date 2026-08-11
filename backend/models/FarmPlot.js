@@ -46,6 +46,7 @@ const CROP_DEFINITIONS = {
     growthTime: 150,
     waterCost: 5,
     xpReward: 45,
+    season: 'summer',
   },
 };
 

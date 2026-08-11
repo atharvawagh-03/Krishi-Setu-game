@@ -6,6 +6,14 @@ const axios = require('axios');
 const CROPS = FarmPlot.CROPS;
 const USER_ID = process.env.DEFAULT_USER_ID || 'default_player';
 
+const getCurrentSeason = () => {
+  const month = new Date().getMonth();
+  if (month >= 5 && month <= 7) return 'summer';
+  if (month >= 2 && month <= 4) return 'spring';
+  if (month >= 8 && month <= 10) return 'autumn';
+  return 'winter';
+};
+
 // ─── Helper: get or create default user ───────────────────────────────────────
 const getOrCreateUser = async () => {
   let user = await User.findOne({ userId: USER_ID });
@@ -81,8 +89,16 @@ exports.plantCrop = async (req, res, next) => {
       return res.status(400).json({ success: false, error: 'Invalid crop type' });
     }
 
-    const user = await getOrCreateUser();
+    const season = getCurrentSeason();
     const crop = CROPS[cropType];
+    if (crop.season && crop.season !== season) {
+      return res.status(400).json({
+        success: false,
+        error: `${crop.name} can only be planted in ${crop.season}.`,
+      });
+    }
+
+    const user = await getOrCreateUser();
 
     if (user.coins < crop.cost) {
       return res.status(400).json({ success: false, error: 'Not enough coins to plant this crop' });

@@ -2,11 +2,11 @@ import { motion } from 'framer-motion';
 import useGameStore from '../store/gameStore';
 
 const CROP_LIST = [
-  { key: 'wheat',      emoji: '🌾', name: 'Wheat',      color: 'from-amber-500/20 to-yellow-500/10',  border: 'border-amber-500/30',  badge: 'bg-amber-500/20 text-amber-300',  tag: 'Beginner' },
-  { key: 'tomato',     emoji: '🍅', name: 'Tomato',     color: 'from-red-500/20 to-rose-500/10',      border: 'border-red-500/30',     badge: 'bg-red-500/20 text-red-300',      tag: 'Popular' },
-  { key: 'corn',       emoji: '🌽', name: 'Corn',       color: 'from-yellow-500/20 to-orange-500/10', border: 'border-yellow-500/30',  badge: 'bg-yellow-500/20 text-yellow-300', tag: 'Balanced' },
-  { key: 'strawberry', emoji: '🍓', name: 'Strawberry', color: 'from-pink-500/20 to-fuchsia-500/10',  border: 'border-pink-500/30',    badge: 'bg-pink-500/20 text-pink-300',     tag: 'Premium' },
-  { key: 'sunflower',  emoji: '🌻', name: 'Sunflower',  color: 'from-amber-200/20 to-yellow-400/10', border: 'border-amber-400/30', badge: 'bg-amber-500/20 text-amber-300', tag: 'Sunshine' },
+  { key: 'wheat',      emoji: '🌾', name: 'Wheat',      color: 'from-amber-500/20 to-yellow-500/10',  border: 'border-amber-500/30',  badge: 'bg-amber-500/20 text-amber-300',  tag: 'Beginner',  cost: 20,  reward: 40,  growthTime: 30,  season: null },
+  { key: 'tomato',     emoji: '🍅', name: 'Tomato',     color: 'from-red-500/20 to-rose-500/10',      border: 'border-red-500/30',     badge: 'bg-red-500/20 text-red-300',      tag: 'Popular',    cost: 50,  reward: 95,  growthTime: 60,  season: null },
+  { key: 'corn',       emoji: '🌽', name: 'Corn',       color: 'from-yellow-500/20 to-orange-500/10', border: 'border-yellow-500/30',  badge: 'bg-yellow-500/20 text-yellow-300', tag: 'Balanced',   cost: 80,  reward: 160, growthTime: 120, season: null },
+  { key: 'strawberry', emoji: '🍓', name: 'Strawberry', color: 'from-pink-500/20 to-fuchsia-500/10',  border: 'border-pink-500/30',    badge: 'bg-pink-500/20 text-pink-300',     tag: 'Premium',    cost: 120, reward: 280, growthTime: 180, season: null },
+  { key: 'sunflower',  emoji: '🌻', name: 'Sunflower',  color: 'from-amber-200/20 to-yellow-400/10', border: 'border-amber-400/30', badge: 'bg-amber-500/20 text-amber-300', tag: 'Sunshine',   cost: 100, reward: 220, growthTime: 150, season: 'summer' },
 ];
 
 function formatTime(seconds) {
@@ -15,7 +15,7 @@ function formatTime(seconds) {
 }
 
 export default function CropShop() {
-  const { selectedCrop, selectCrop, crops, user, plantCrop } = useGameStore();
+  const { selectedCrop, selectCrop, crops, user, plantCrop, season } = useGameStore();
 
   return (
     <div className="glass-card p-5">
@@ -26,25 +26,31 @@ export default function CropShop() {
 
       <div className="flex flex-col gap-3">
         {CROP_LIST.map((crop) => {
-          const info = crops[crop.key];
+          const info = crops[crop.key] || {};
           const isSelected = selectedCrop === crop.key;
+          const seasonLocked = crop.season && crop.season !== season;
           const canAfford = user && info && user.coins >= info.cost;
+          const buttonDisabled = seasonLocked || !canAfford;
 
           return (
             <motion.button
               key={crop.key}
               id={`crop-btn-${crop.key}`}
-              whileHover={{ scale: 1.02, x: 3 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => selectCrop(crop.key)}
+              whileHover={{ scale: buttonDisabled ? 1 : 1.02, x: buttonDisabled ? 0 : 3 }}
+              whileTap={{ scale: buttonDisabled ? 1 : 0.98 }}
+              onClick={() => {
+                if (buttonDisabled) return;
+                selectCrop(crop.key);
+              }}
               className={`
                 relative w-full p-4 rounded-xl border-2 text-left transition-all duration-200
                 bg-gradient-to-br ${crop.color}
                 ${isSelected ? `${crop.border} shadow-lg` : 'border-white/10'}
-                ${!canAfford ? 'opacity-50' : ''}
+                ${buttonDisabled ? 'opacity-50 cursor-not-allowed' : ''}
               `}
               aria-label={`Select ${crop.name} crop – costs ${info?.cost} coins, earns ${info?.reward} coins`}
               aria-pressed={isSelected}
+              aria-disabled={buttonDisabled}
             >
               {/* Selected indicator */}
               {isSelected && (
@@ -68,6 +74,11 @@ export default function CropShop() {
                     <span>💰 {info?.cost ?? '—'} cost</span>
                     <span>🏆 {info?.reward ?? '—'} reward</span>
                     <span>⏱ {info ? formatTime(info.growthTime) : '—'}</span>
+                    {crop.season && (
+                      <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em]">
+                        {seasonLocked ? `${crop.season} only` : `${crop.season}`}
+                      </span>
+                    )}
                   </div>
                 </div>
                 {isSelected && (

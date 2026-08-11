@@ -7,6 +7,15 @@ const CROP_EMOJIS = {
   tomato: '🍅',
   corn: '🌽',
   strawberry: '🍓',
+  sunflower: '🌻',
+};
+
+const getCurrentSeason = () => {
+  const month = new Date().getMonth();
+  if (month >= 5 && month <= 7) return 'summer';
+  if (month >= 2 && month <= 4) return 'spring';
+  if (month >= 8 && month <= 10) return 'autumn';
+  return 'winter';
 };
 
 const useGameStore = create((set, get) => ({
@@ -17,6 +26,7 @@ const useGameStore = create((set, get) => ({
   advisor: null,
   stats: null,
   weather: 'sunny',
+  season: getCurrentSeason(),
   selectedCrop: 'wheat',
   loading: true,
   actionLoading: false,
