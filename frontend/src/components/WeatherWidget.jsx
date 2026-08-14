@@ -22,7 +22,7 @@ export default function WeatherWidget() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: 10 }}
         transition={{ duration: 0.4 }}
-        className={`glass-card p-5 bg-gradient-to-br ${w.from} ${w.to} border ${w.border}`}
+        className={`glass-card p-5 bg-gradient-to-br ${w.from} ${w.to} border ${w.border} transition-all duration-300 hover:shadow-[0_18px_45px_rgba(14,165,233,0.12)]`}
         aria-label={`Current weather: ${w.label}`}
       >
         <div className="flex items-center gap-2 mb-3">

@@ -27,6 +27,9 @@ const useWeather = () => {
         duration: 4000,
         style: { background: '#0ea5e9', color: '#fff' },
       });
+      if (typeof window !== 'undefined') {
+        import('../utils/sound').then(({ playSound }) => playSound('rain'));
+      }
       if (user?.waterLevel < 100) {
         waterFarm();
       }

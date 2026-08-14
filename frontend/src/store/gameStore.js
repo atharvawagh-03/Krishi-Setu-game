@@ -96,6 +96,10 @@ const useGameStore = create((set, get) => ({
         actionLoading: false,
       }));
       toast.success(data.message);
+      if (typeof window !== 'undefined') {
+        const { playSound } = await import('../utils/sound');
+        playSound('plant');
+      }
     } catch (err) {
       toast.error(err.message || 'Failed to plant crop');
       set({ actionLoading: false });
@@ -138,6 +142,11 @@ const useGameStore = create((set, get) => ({
       }));
 
       toast.success(data.message, { icon: '🎉' });
+      if (typeof window !== 'undefined') {
+        const { playSound } = await import('../utils/sound');
+        playSound('harvest');
+        playSound('coin');
+      }
     } catch (err) {
       toast.error(err.message || 'Failed to harvest crop');
       set({ actionLoading: false });
@@ -154,6 +163,10 @@ const useGameStore = create((set, get) => ({
         actionLoading: false,
       }));
       toast.success(data.message);
+      if (typeof window !== 'undefined') {
+        const { playSound } = await import('../utils/sound');
+        playSound('water');
+      }
     } catch (err) {
       toast.error(err.message || 'Failed to refill water');
       set({ actionLoading: false });
@@ -182,6 +195,9 @@ const useGameStore = create((set, get) => ({
 
   /** Set weather (called by useWeather hook) */
   setWeather: (weather) => set({ weather }),
+
+  /** Trigger a UI pulse effect for seasonal or action feedback */
+  pulseAction: (type) => set({ harvestEffect: { plotIndex: -1, coins: type === 'coin' ? 0 : 1, x: window.innerWidth / 2, y: window.innerHeight / 2 } }),
 
   /** Set current season */
   setSeason: (season) => set({

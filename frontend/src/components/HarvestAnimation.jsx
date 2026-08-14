@@ -21,9 +21,9 @@ export default function HarvestAnimation() {
               }}
               animate={{
                 opacity: 0,
-                x: harvestEffect.x + (Math.random() - 0.5) * 80,
-                y: harvestEffect.y - 120 - i * 20,
-                scale: 0.4,
+                x: harvestEffect.x + (Math.random() - 0.5) * 90,
+                y: harvestEffect.y - 130 - i * 18,
+                scale: 0.45,
               }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.8 + i * 0.1, ease: 'easeOut', delay: i * 0.05 }}

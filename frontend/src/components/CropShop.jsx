@@ -42,8 +42,8 @@ export default function CropShop() {
             <motion.button
               key={crop.key}
               id={`crop-btn-${crop.key}`}
-              whileHover={{ scale: buttonDisabled ? 1 : 1.02, x: buttonDisabled ? 0 : 3 }}
-              whileTap={{ scale: buttonDisabled ? 1 : 0.98 }}
+              whileHover={{ scale: buttonDisabled ? 1 : 1.03, x: buttonDisabled ? 0 : 4, y: buttonDisabled ? 0 : -2 }}
+              whileTap={{ scale: buttonDisabled ? 1 : 0.97 }}
               onClick={() => {
                 if (buttonDisabled) return;
                 selectCrop(crop.key);

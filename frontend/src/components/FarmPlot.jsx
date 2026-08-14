@@ -71,7 +71,7 @@ export default function FarmPlotTile({ plot, selectedCrop, cropInfo, onClick }) 
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.8 }}
       transition={{ duration: 0.3 }}
-      whileHover={isClickable ? { scale: 1.04, y: -3 } : {}}
+      whileHover={isClickable ? { scale: 1.05, y: -5, rotate: 0.3 } : {}}
       whileTap={isClickable ? { scale: 0.97 } : {}}
       onClick={isClickable ? onClick : undefined}
       className={`
