@@ -50,6 +50,19 @@ const stateConfig = {
 export default function FarmPlotTile({ plot, selectedCrop, cropInfo, onClick }) {
   const cfg = stateConfig[plot.state] || stateConfig.empty;
   const isClickable = plot.state === 'empty' || plot.state === 'harvested' || plot.state === 'ready';
+  const progress = plot.progress || 0;
+  const currentStage =
+    plot.state === 'ready'
+      ? 'Ready'
+      : plot.state === 'growing'
+      ? progress < 25
+        ? 'Seedling'
+        : progress < 50
+        ? 'Growing'
+        : progress < 75
+        ? 'Mature'
+        : 'Ready'
+      : 'Empty';
 
   return (
     <motion.div
@@ -117,11 +130,15 @@ export default function FarmPlotTile({ plot, selectedCrop, cropInfo, onClick }) 
 
           {/* Progress ring overlay */}
           <div className="relative">
-            <ProgressRing progress={plot.progress || 0} size={52} strokeWidth={4} color="#fbbf24" />
+            <ProgressRing progress={progress} size={52} strokeWidth={4} color="#fbbf24" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-xs font-bold text-amber-300">{plot.progress || 0}%</span>
+              <span className="text-xs font-bold text-amber-300">{progress}%</span>
             </div>
           </div>
+
+          <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-amber-300/90">
+            {currentStage}
+          </span>
 
           {/* Countdown */}
           <span className="text-xs text-amber-400/80">{formatTime(plot.secondsRemaining || 0)}</span>
@@ -145,7 +162,7 @@ export default function FarmPlotTile({ plot, selectedCrop, cropInfo, onClick }) 
           <div className="flex items-center gap-1 px-3 py-1 rounded-lg text-xs font-bold"
             style={{ background: 'rgba(34,197,94,0.2)', color: '#4ade80' }}>
             <span>✅</span>
-            <span>Harvest!</span>
+            <span>{currentStage}</span>
           </div>
 
           <div className="text-xs text-green-400/80 font-medium">

@@ -2,11 +2,17 @@ import { motion } from 'framer-motion';
 import useGameStore from '../store/gameStore';
 
 const CROP_LIST = [
-  { key: 'wheat',      emoji: '🌾', name: 'Wheat',      color: 'from-amber-500/20 to-yellow-500/10',  border: 'border-amber-500/30',  badge: 'bg-amber-500/20 text-amber-300',  tag: 'Beginner',  cost: 20,  reward: 40,  growthTime: 30,  season: null },
-  { key: 'tomato',     emoji: '🍅', name: 'Tomato',     color: 'from-red-500/20 to-rose-500/10',      border: 'border-red-500/30',     badge: 'bg-red-500/20 text-red-300',      tag: 'Popular',    cost: 50,  reward: 95,  growthTime: 60,  season: null },
-  { key: 'corn',       emoji: '🌽', name: 'Corn',       color: 'from-yellow-500/20 to-orange-500/10', border: 'border-yellow-500/30',  badge: 'bg-yellow-500/20 text-yellow-300', tag: 'Balanced',   cost: 80,  reward: 160, growthTime: 120, season: null },
-  { key: 'strawberry', emoji: '🍓', name: 'Strawberry', color: 'from-pink-500/20 to-fuchsia-500/10',  border: 'border-pink-500/30',    badge: 'bg-pink-500/20 text-pink-300',     tag: 'Premium',    cost: 120, reward: 280, growthTime: 180, season: null },
-  { key: 'sunflower',  emoji: '🌻', name: 'Sunflower',  color: 'from-amber-200/20 to-yellow-400/10', border: 'border-amber-400/30', badge: 'bg-amber-500/20 text-amber-300', tag: 'Sunshine',   cost: 100, reward: 220, growthTime: 150, season: 'summer' },
+  { key: 'wheat',      emoji: '🌾', name: 'Wheat',      color: 'from-amber-500/20 to-yellow-500/10',  border: 'border-amber-500/30',  badge: 'bg-amber-500/20 text-amber-300',  tag: 'Beginner',  cost: 20,  reward: 40,  growthTime: 30,  season: 'winter',  waterCost: 5 },
+  { key: 'tomato',     emoji: '🍅', name: 'Tomato',     color: 'from-red-500/20 to-rose-500/10',      border: 'border-red-500/30',     badge: 'bg-red-500/20 text-red-300',      tag: 'Popular',    cost: 50,  reward: 95,  growthTime: 60,  season: 'summer',  waterCost: 8 },
+  { key: 'corn',       emoji: '🌽', name: 'Corn',       color: 'from-yellow-500/20 to-orange-500/10', border: 'border-yellow-500/30',  badge: 'bg-yellow-500/20 text-yellow-300', tag: 'Balanced',   cost: 80,  reward: 160, growthTime: 120, season: 'monsoon', waterCost: 10 },
+  { key: 'strawberry', emoji: '🍓', name: 'Strawberry', color: 'from-pink-500/20 to-fuchsia-500/10',  border: 'border-pink-500/30',    badge: 'bg-pink-500/20 text-pink-300',     tag: 'Premium',    cost: 120, reward: 280, growthTime: 180, season: 'spring',  waterCost: 12 },
+  { key: 'sunflower',  emoji: '🌻', name: 'Sunflower',  color: 'from-amber-200/20 to-yellow-400/10', border: 'border-amber-400/30', badge: 'bg-amber-500/20 text-amber-300', tag: 'Sunshine',   cost: 100, reward: 220, growthTime: 150, season: 'summer',  waterCost: 9 },
+  { key: 'rice',       emoji: '🌾', name: 'Rice',       color: 'from-emerald-500/20 to-lime-500/10', border: 'border-emerald-400/30', badge: 'bg-emerald-500/20 text-emerald-300', tag: 'Wetland', cost: 60, reward: 130, growthTime: 110, season: 'monsoon', waterCost: 14 },
+  { key: 'potato',     emoji: '🥔', name: 'Potato',     color: 'from-purple-500/20 to-violet-500/10', border: 'border-violet-400/30', badge: 'bg-violet-500/20 text-violet-300', tag: 'Root', cost: 70, reward: 150, growthTime: 130, season: 'winter', waterCost: 11 },
+  { key: 'spinach',    emoji: '🌿', name: 'Spinach',    color: 'from-green-500/20 to-emerald-500/10', border: 'border-green-400/30', badge: 'bg-green-500/20 text-green-300', tag: 'Leafy', cost: 45, reward: 90, growthTime: 70, season: 'spring', waterCost: 7 },
+  { key: 'chili',      emoji: '🌶️', name: 'Chili',      color: 'from-orange-500/20 to-red-500/10', border: 'border-orange-500/30', badge: 'bg-orange-500/20 text-orange-300', tag: 'Spicy', cost: 90, reward: 200, growthTime: 140, season: 'summer', waterCost: 10 },
+  { key: 'cotton',     emoji: '🧵', name: 'Cotton',     color: 'from-slate-400/20 to-stone-400/10', border: 'border-slate-300/40', badge: 'bg-slate-400/20 text-slate-200', tag: 'Fiber', cost: 110, reward: 250, growthTime: 170, season: 'monsoon', waterCost: 12 },
+  { key: 'sugarcane',  emoji: '🎋', name: 'Sugarcane',  color: 'from-lime-500/20 to-green-500/10', border: 'border-lime-400/30', badge: 'bg-lime-500/20 text-lime-300', tag: 'Sweet', cost: 130, reward: 320, growthTime: 200, season: 'monsoon', waterCost: 15 },
 ];
 
 function formatTime(seconds) {
@@ -73,6 +79,7 @@ export default function CropShop() {
                   <div className="flex items-center gap-3 text-xs text-slate-400">
                     <span>💰 {info?.cost ?? '—'} cost</span>
                     <span>🏆 {info?.reward ?? '—'} reward</span>
+                    <span>💧 {crop.waterCost ?? '—'} water</span>
                     <span>⏱ {info ? formatTime(info.growthTime) : '—'}</span>
                     {crop.season && (
                       <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em]">

@@ -8,6 +8,12 @@ const CROP_EMOJIS = {
   corn: '🌽',
   strawberry: '🍓',
   sunflower: '🌻',
+  rice: '🌾',
+  potato: '🥔',
+  spinach: '🌿',
+  chili: '🌶️',
+  cotton: '🧵',
+  sugarcane: '🎋',
 };
 
 export const SEASON_ORDER = ['spring', 'summer', 'monsoon', 'winter'];
