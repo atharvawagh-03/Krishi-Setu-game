@@ -8,9 +8,9 @@ const USER_ID = process.env.DEFAULT_USER_ID || 'default_player';
 
 const getCurrentSeason = () => {
   const month = new Date().getMonth();
-  if (month >= 5 && month <= 7) return 'summer';
   if (month >= 2 && month <= 4) return 'spring';
-  if (month >= 8 && month <= 10) return 'autumn';
+  if (month >= 5 && month <= 6) return 'summer';
+  if (month >= 7 && month <= 9) return 'monsoon';
   return 'winter';
 };
 
@@ -91,12 +91,8 @@ exports.plantCrop = async (req, res, next) => {
 
     const season = getCurrentSeason();
     const crop = CROPS[cropType];
-    if (crop.season && crop.season !== season) {
-      return res.status(400).json({
-        success: false,
-        error: `${crop.name} can only be planted in ${crop.season}.`,
-      });
-    }
+    const seasonBoost = crop.idealSeasons?.includes(season) ? 1.2 : 0.85;
+    const adjustedGrowthTime = Math.max(15, Math.round(crop.growthTime * (seasonBoost > 1 ? 0.85 : 1.2)));
 
     const user = await getOrCreateUser();
 
@@ -121,7 +117,7 @@ exports.plantCrop = async (req, res, next) => {
 
     // Set growth timestamps
     const now = new Date();
-    const readyAt = new Date(now.getTime() + crop.growthTime * 1000);
+    const readyAt = new Date(now.getTime() + adjustedGrowthTime * 1000);
 
     plot.state = 'growing';
     plot.cropType = cropType;
@@ -173,9 +169,10 @@ exports.harvestCrop = async (req, res, next) => {
     }
 
     const crop = CROPS[plot.cropType];
-    // Level bonus: +2% per level above 1
+    const season = getCurrentSeason();
+    const seasonBoost = crop.idealSeasons?.includes(season) ? 1.2 : 0.9;
     const levelBonus = 1 + (user.level - 1) * 0.02;
-    const coinsEarned = Math.floor(crop.reward * levelBonus);
+    const coinsEarned = Math.max(10, Math.floor(crop.reward * levelBonus * seasonBoost));
     const xpEarned = crop.xpReward;
     const growthDuration = Math.floor((Date.now() - plot.plantedAt) / 1000);
 

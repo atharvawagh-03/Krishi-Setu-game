@@ -6,6 +6,7 @@ const WEATHER_TYPES = [
   { key: 'sunny',  label: 'Sunny',  icon: '☀️',  desc: 'Normal growth speed.' },
   { key: 'cloudy', label: 'Cloudy', icon: '☁️',  desc: 'Neutral effect on crops.' },
   { key: 'rainy',  label: 'Rainy',  icon: '🌧️', desc: 'Auto-watering all crops!' },
+  { key: 'windy',  label: 'Windy',  icon: '🌬️', desc: 'Dry air reduces moisture retention.' },
 ];
 
 export const WEATHER_INFO = WEATHER_TYPES.reduce((acc, w) => {
@@ -26,7 +27,6 @@ const useWeather = () => {
         duration: 4000,
         style: { background: '#0ea5e9', color: '#fff' },
       });
-      // Auto-water on rainy weather
       if (user?.waterLevel < 100) {
         waterFarm();
       }
@@ -39,8 +39,16 @@ const useWeather = () => {
   }, [setWeather, waterFarm, user]);
 
   useEffect(() => {
-    const interval = setInterval(changeWeather, 60_000);
-    return () => clearInterval(interval);
+    const weatherInterval = setInterval(changeWeather, 60_000);
+    const seasonInterval = setInterval(() => {
+      const { tickSeason } = useGameStore.getState();
+      tickSeason();
+    }, 90_000);
+
+    return () => {
+      clearInterval(weatherInterval);
+      clearInterval(seasonInterval);
+    };
   }, [changeWeather]);
 
   return { WEATHER_INFO };

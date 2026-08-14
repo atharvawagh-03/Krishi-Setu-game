@@ -20,8 +20,15 @@ function XPBar({ experience, level }) {
   );
 }
 
+const SEASON_INFO = {
+  spring: { label: 'Spring', icon: '🌼' },
+  summer: { label: 'Summer', icon: '☀️' },
+  monsoon: { label: 'Monsoon', icon: '🌧️' },
+  winter: { label: 'Winter', icon: '❄️' },
+};
+
 export default function NavBar() {
-  const { user, waterFarm } = useGameStore();
+  const { user, waterFarm, season } = useGameStore();
   const navigate = useNavigate();
 
   return (
@@ -73,6 +80,12 @@ export default function NavBar() {
                 />
               </div>
               <span className="text-xs text-sky-300">{user.waterLevel}%</span>
+            </div>
+
+            {/* Season */}
+            <div className="flex items-center gap-2 px-3 py-2 glass-card rounded-xl" aria-label={`Season: ${season}`}>
+              <span>{SEASON_INFO[season]?.icon || '🌱'}</span>
+              <span className="text-sm font-bold text-green-300">{SEASON_INFO[season]?.label || 'Spring'}</span>
             </div>
           </div>
         )}

@@ -10,11 +10,13 @@ const CROP_EMOJIS = {
   sunflower: '🌻',
 };
 
+export const SEASON_ORDER = ['spring', 'summer', 'monsoon', 'winter'];
+
 const getCurrentSeason = () => {
   const month = new Date().getMonth();
-  if (month >= 5 && month <= 7) return 'summer';
   if (month >= 2 && month <= 4) return 'spring';
-  if (month >= 8 && month <= 10) return 'autumn';
+  if (month >= 5 && month <= 6) return 'summer';
+  if (month >= 7 && month <= 9) return 'monsoon';
   return 'winter';
 };
 
@@ -27,6 +29,7 @@ const useGameStore = create((set, get) => ({
   stats: null,
   weather: 'sunny',
   season: getCurrentSeason(),
+  seasonIndex: SEASON_ORDER.indexOf(getCurrentSeason()),
   selectedCrop: 'wheat',
   loading: true,
   actionLoading: false,
@@ -173,6 +176,27 @@ const useGameStore = create((set, get) => ({
 
   /** Set weather (called by useWeather hook) */
   setWeather: (weather) => set({ weather }),
+
+  /** Set current season */
+  setSeason: (season) => set({
+    season,
+    seasonIndex: SEASON_ORDER.indexOf(season),
+  }),
+
+  /** Advance to the next season in the cycle */
+  advanceSeason: () => {
+    set((state) => {
+      const nextIndex = (state.seasonIndex + 1) % SEASON_ORDER.length;
+      return { season: SEASON_ORDER[nextIndex], seasonIndex: nextIndex };
+    });
+  },
+
+  /** Advance season automatically in a loop */
+  tickSeason: () => {
+    const { seasonIndex } = get();
+    const nextIndex = (seasonIndex + 1) % SEASON_ORDER.length;
+    set({ season: SEASON_ORDER[nextIndex], seasonIndex: nextIndex });
+  },
 
   /** Update a single plot progress (called by timer hook) */
   updatePlotProgress: (plotIndex, progress, secondsRemaining, newState) => {

@@ -7,9 +7,11 @@ const CROP_DEFINITIONS = {
     emoji: '🌾',
     cost: 20,
     reward: 40,
-    growthTime: 30, // seconds (30s for demo; set to 60+ for real)
+    growthTime: 30,
     waterCost: 5,
     xpReward: 10,
+    idealSeasons: ['winter', 'spring'],
+    season: 'winter',
   },
   tomato: {
     name: 'Tomato',
@@ -19,6 +21,8 @@ const CROP_DEFINITIONS = {
     growthTime: 60,
     waterCost: 5,
     xpReward: 20,
+    idealSeasons: ['spring', 'summer'],
+    season: 'summer',
   },
   corn: {
     name: 'Corn',
@@ -28,6 +32,8 @@ const CROP_DEFINITIONS = {
     growthTime: 120,
     waterCost: 5,
     xpReward: 35,
+    idealSeasons: ['monsoon', 'summer'],
+    season: 'monsoon',
   },
   strawberry: {
     name: 'Strawberry',
@@ -37,6 +43,8 @@ const CROP_DEFINITIONS = {
     growthTime: 180,
     waterCost: 5,
     xpReward: 60,
+    idealSeasons: ['winter', 'spring'],
+    season: 'spring',
   },
   sunflower: {
     name: 'Sunflower',
@@ -46,6 +54,7 @@ const CROP_DEFINITIONS = {
     growthTime: 150,
     waterCost: 5,
     xpReward: 45,
+    idealSeasons: ['summer', 'monsoon'],
     season: 'summer',
   },
 };

@@ -6,6 +6,7 @@ const WEATHER_STYLES = {
   sunny:  { icon: '☀️',  label: 'Sunny',  from: 'from-amber-500/20', to: 'to-orange-500/10', border: 'border-amber-500/30', text: 'text-amber-300' },
   cloudy: { icon: '☁️',  label: 'Cloudy', from: 'from-slate-500/20', to: 'to-gray-500/10',   border: 'border-slate-500/30', text: 'text-slate-300' },
   rainy:  { icon: '🌧️', label: 'Rainy',  from: 'from-sky-500/20',   to: 'to-blue-500/10',   border: 'border-sky-500/30',   text: 'text-sky-300'  },
+  windy:  { icon: '🌬️', label: 'Windy',  from: 'from-cyan-500/20',  to: 'to-teal-500/10',   border: 'border-cyan-500/30',  text: 'text-cyan-300' },
 };
 
 export default function WeatherWidget() {
